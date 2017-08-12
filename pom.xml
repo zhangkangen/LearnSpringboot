@@ -6,7 +6,23 @@
 
     <groupId>com.zh</groupId>
     <artifactId>LearnSpringboot</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>first-app</module>
+    </modules>
+    <properties>
 
+    </properties>
+    <dependencies>
+
+    </dependencies>
+    <distributionManagement>
+
+    </distributionManagement>
+    <build>
+        <plugins>
+        </plugins>
+    </build>
 </project>
