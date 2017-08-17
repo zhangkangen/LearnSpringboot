@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.js"></script>
+    <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+</head>
+<body>
+<input type="text" id="name" required>
+<input type="button" id="send" value="send">
+<div id="content"></div>
+<script>
+    var stompClient = null;
+    $(function () {
+        connect();
+
+        $('#send').click(function () {
+            sendName();
+        })
+    })
+
+    function connect() {
+        var socket = new SockJS('/endpointWisely');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/topic/getResponse', function (response) {
+                showResponse(JSON.parse(response.body));
+            })
+        });
+    }
+
+    function showResponse(res) {
+        alert(JSON.stringify(res));
+        $('#content').append(JSON.stringify(res)+'<br>');
+    }
+
+    function sendName() {
+        var name = $('#name').val();
+        stompClient.send('/welcome', {}, JSON.stringify({'name': name}));
+    }
+</script>
+</body>
+</html>

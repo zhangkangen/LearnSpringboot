@@ -15,4 +15,11 @@ public class WiselyResponse {
     public void setResponseMessage(String responseMessage) {
         this.responseMessage = responseMessage;
     }
+
+    @Override
+    public String toString() {
+        return "WiselyResponse{" +
+                "responseMessage='" + responseMessage + '\'' +
+                '}';
+    }
 }
