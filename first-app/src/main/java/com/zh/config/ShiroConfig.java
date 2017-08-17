@@ -1,4 +1,4 @@
-package com.zh.configuration;
+package com.zh.config;
 
 import com.zh.shiro.MyShiroRealm;
 import org.apache.shiro.mgt.SecurityManager;

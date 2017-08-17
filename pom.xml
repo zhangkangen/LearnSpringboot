@@ -11,6 +11,8 @@
 
     <modules>
         <module>first-app</module>
+        <module>second-app</module>
+        <module>im-app</module>
     </modules>
     <properties>
 
