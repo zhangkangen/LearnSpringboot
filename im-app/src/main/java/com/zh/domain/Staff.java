@@ -1,10 +1,17 @@
 package com.zh.domain;
 
+import javax.persistence.*;
+import java.util.List;
+
 /**
  * Created by lenovo on 2017/8/19.
  */
+@Entity
 public class Staff {
+    @Id
+    @GeneratedValue
     private Integer id;
+    private Integer uid;
     /**
      * 昵称
      */
@@ -28,6 +35,14 @@ public class Staff {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getUsername() {

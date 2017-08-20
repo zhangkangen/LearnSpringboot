@@ -1,12 +1,20 @@
 package com.zh.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
+
 /**
  * Created by lenovo on 2017/8/21.
  */
-public class Friend {
+@Entity
+public class Friend implements Serializable {
     /**
      * 主键id
      */
+    @Id
+    @GeneratedValue
     private Integer fid;
     /**
      * 用户id

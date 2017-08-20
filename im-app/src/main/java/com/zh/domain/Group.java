@@ -1,15 +1,25 @@
 package com.zh.domain;
 
+import javax.persistence.*;
+import javax.print.attribute.standard.MediaSize;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 分组
  * Created by lenovo on 2017/8/19.
  */
-public class group {
-    private  Integer id;
+@Entity
+@Table(name = "t_group")
+public class Group implements Serializable {
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String groupname;
     private String avatar;
+    @ManyToMany
+    @JoinTable(name = "T_FriendGroup",joinColumns = {@JoinColumn(name = "groupId")},inverseJoinColumns = {@JoinColumn(name = "friendId")})
+    private List<Friend> list;
 
     /**
      * 类型
@@ -21,11 +31,7 @@ public class group {
     /**
      * 群主
      */
-    private Staff owner;
-    /**
-     * 群成员
-     */
-    private List<Staff> list;
+    private Integer owner;
 
     public Integer getId() {
         return id;
@@ -59,19 +65,19 @@ public class group {
         this.type = type;
     }
 
-    public Staff getOwner() {
+    public Integer getOwner() {
         return owner;
     }
 
-    public void setOwner(Staff owner) {
+    public void setOwner(Integer owner) {
         this.owner = owner;
     }
 
-    public List<Staff> getList() {
+    public List<Friend> getList() {
         return list;
     }
 
-    public void setList(List<Staff> list) {
+    public void setList(List<Friend> list) {
         this.list = list;
     }
 }

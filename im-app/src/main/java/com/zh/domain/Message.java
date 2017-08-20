@@ -3,9 +3,10 @@ package com.zh.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Message {
+public class Message implements Serializable{
 
     @Id
     @GeneratedValue

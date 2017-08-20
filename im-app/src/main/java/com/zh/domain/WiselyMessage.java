@@ -1,6 +1,8 @@
 package com.zh.domain;
 
-public class WiselyMessage {
+import java.io.Serializable;
+
+public class WiselyMessage implements Serializable{
 
     private String name;
 
