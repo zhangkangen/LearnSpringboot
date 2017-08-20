@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/build/css/layui.css">
+</head>
+<body>
+这个是登录页面
+<script src="/layui/build/layui.js"></script>
+<script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+<script>
+    layui.use(['jquery', 'layim'], function () {
+        var $ = layui.jquery;
+        var layim = layui.layim;
+        var device = layui.device();
+        console.log(device);
+
+        var stompClient = null;
+
+        layim.config({
+            init: {
+                url: '/api/im/getList',//接口地址
+                type: 'get',
+                data: {}//额外参数
+            },
+            mine: {
+                "username": 'LayIM体验者'//我的昵称
+                , "id": '100000123',//我的ID
+                "status": 'online',//在线状态
+                "sign": '在深邃的代码世界，做一枚轻盈的纸飞机',//签名
+                "avatar": 'a.jpg'//我的头像
+            },
+            //获取群员接口
+            members: {
+                url: '',//接口地址
+                type: 'post'//默认get，一般可不填
+            },
+            //上传图片接口
+            uploadImage: {
+                url: '',
+                type: 'post'//默认post
+            },
+            //上传文件接口
+            uploadFile: {
+                url: '',
+                type: 'post'
+            },
+            skin: ['http://xx.com/skin.jpg',
+            ],
+            brief: false //是否简约模式（默认false，如果只用到在线客服，且不想显示主面板，可以设置true）
+            , title: '我的LayIM'//主面板最小化后显示的名称
+            , min: false//用于设定主面板是否在页面打开时，始终最小化展现。默认false,即记录上次的状态
+            , minRight: null//【默认不开启】用户控制聊天面板最小化时、及新消息提示层的相对right的px坐标，如：minRight: '200px'
+            , maxLength: 3000//最长发送的字符长度，默认3000
+            , isfriend: true//是否开启好友（默认true，即开启）
+            , isgroup: true//是否开启群组（默认true，即开启）
+            , right: '0px'//默认0px，用于设定主面板右偏移量。该参数可避免遮盖你页面右下角已经的bar。
+            , chatLog: '/chat/log'//聊天记录地址（如果未填则不显示）
+            , find: '/find'//查找好友/群的地址（如果未填则不显示）
+            , copyright: false//是否授权，如果通过官网捐赠获得LayIM,此处可填true
+        });
+
+        layim.on('ready', function (res) {
+            console.log(res);
+            connect();
+        });
+        //监听在线状态切换
+        layim.on('online', function (status) {
+            $.ajax({
+                url: '/api/im/onlineChange',
+                data: {online: status},
+                success: function (res) {
+                    alert(res)
+                }
+            })
+        });
+        //监听发送的消息
+        layim.on('sendMessage', function (res) {
+            console.log(res);
+            var mine = res.mine;
+            var to = res.to;
+        });
+        //监听查看群员
+        layim.on('members', function (data) {
+            console.log(data);
+        });
+        //监听聊天窗口的切换
+        layim.on('chatChange', function (data) {
+            console.log(data);
+        });
+
+        function connect() {
+            var socket = new SockJS('/endpointWisely')
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function (frame) {
+                //订阅消息
+                stompClient.subscribe('/topic/getResponse', function (response) {
+                    showResponse(JSON.parse(response.body));
+                });
+                stompClient.send('/welcome', {}, JSON.stringify({'name': 'nihao'}));
+            })
+        }
+
+        function showResponse(res) {
+            alert(JSON.stringify(res));
+        }
+
+        function sendName() {
+            var name = $('#name').val();
+            stompClient.send('/welcome', {}, JSON.stringify({'name': name}));
+        }
+
+
+    })
+</script>
+</body>
+</html>
