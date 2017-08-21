@@ -10,6 +10,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -35,6 +36,9 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();//登录用户用户名
+        if (!StringUtils.hasLength(username)) {
+            return null;
+        }
         UserInfo userInfo = userService.getUserInfo(username);
         if (userInfo == null) {
             return null;

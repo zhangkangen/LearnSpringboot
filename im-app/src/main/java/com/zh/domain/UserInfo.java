@@ -75,6 +75,6 @@ public class UserInfo implements Serializable {
      * @return
      */
     public String getCredentialsSalt() {
-        return this.password + this.salt;
+        return this.username + this.salt;
     }
 }
