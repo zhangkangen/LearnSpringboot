@@ -5,12 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity
-public class Message implements Serializable{
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class TMessage extends BaseEntity implements Serializable{
     /**
      * 内容
      */
@@ -19,14 +14,6 @@ public class Message implements Serializable{
      * 类型
      */
     private String emit;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getContent() {
         return content;

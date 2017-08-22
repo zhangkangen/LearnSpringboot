@@ -4,21 +4,29 @@ spring:
   devtools:
     restart:
       exclude: static/**
-  datasource:
-    url: jdbc:mysql://localhost:3306/test
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
-  jpa:
-    database: mysql
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      naming:
-        strategy: org.hibernate.cfg.DefaultComponentSafeNamingStrategy
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
   thymeleaf:
     cache: false
     mode: LEGACYHTML5
+druid:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: Zucking888
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+logging:
+  level:
+    tk.mybatis:TRACE
+mybatis:
+  type-aliases-package: com.zh.domain
+  mapper-locations: classpath:mapper/*.xml
+mapper:
+  mappers:
+    - com.zh.util.MyMapper
+  not-empty: false
+  identity: MYSQL
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

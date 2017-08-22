@@ -23,6 +23,7 @@ public class LogonController {
 
         String error = null;
         Subject subject = SecurityUtils.getSubject();
+        System.out.println(subject);
         UsernamePasswordToken token = new UsernamePasswordToken(email, pass);
         try {
             subject.login(token);

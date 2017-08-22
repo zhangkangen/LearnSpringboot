@@ -1,16 +1,13 @@
 package com.zh.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lenovo on 2017/8/19.
  */
-@Entity
-public class Staff {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class  TStaff extends BaseEntity implements Serializable {
     private Integer uid;
     /**
      * 昵称
@@ -28,14 +25,6 @@ public class Staff {
      * 头像
      */
     private String avatar;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getUid() {
         return uid;

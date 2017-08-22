@@ -1,6 +1,6 @@
 package com.zh.common.response;
 
-import com.zh.domain.Staff;
+import com.zh.domain.TStaff;
 
 import java.util.List;
 
@@ -11,25 +11,25 @@ public class MemberResponseModel {
     /**
      * 群组
      */
-    private Staff owner;
+    private TStaff owner;
     /**
      * 群成员
      */
-    private List<Staff> list;
+    private List<TStaff> list;
 
-    public Staff getOwner() {
+    public TStaff getOwner() {
         return owner;
     }
 
-    public void setOwner(Staff owner) {
+    public void setOwner(TStaff owner) {
         this.owner = owner;
     }
 
-    public List<Staff> getList() {
+    public List<TStaff> getList() {
         return list;
     }
 
-    public void setList(List<Staff> list) {
+    public void setList(List<TStaff> list) {
         this.list = list;
     }
 }

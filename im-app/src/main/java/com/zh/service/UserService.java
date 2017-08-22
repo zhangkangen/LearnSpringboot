@@ -8,9 +8,4 @@ import com.zh.domain.UserInfo;
  */
 public interface UserService {
 
-    Staff getStaff(Integer id);
-
-    UserInfo getUserInfo(Integer id);
-
-    UserInfo getUserInfo(String username);
 }

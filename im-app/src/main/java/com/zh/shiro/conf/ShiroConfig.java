@@ -34,6 +34,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/images/**","anon");
         //配置退出
         filterChainDefinitionMap.put("/logout", "logout");
+        filterChainDefinitionMap.put("/reg**","anon");
+
 
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setLoginUrl("/login");

@@ -9,17 +9,13 @@ import java.util.List;
  * 分组
  * Created by lenovo on 2017/8/19.
  */
-@Entity
-@Table(name = "t_group")
-public class Group implements Serializable {
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class TGroup extends BaseEntity implements Serializable {
+
     private String groupname;
     private String avatar;
     @ManyToMany
     @JoinTable(name = "T_FriendGroup",joinColumns = {@JoinColumn(name = "groupId")},inverseJoinColumns = {@JoinColumn(name = "friendId")})
-    private List<Friend> list;
+    private List<TFriend> list;
 
     /**
      * 类型
@@ -32,14 +28,6 @@ public class Group implements Serializable {
      * 群主
      */
     private Integer owner;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getGroupname() {
         return groupname;
@@ -73,11 +61,11 @@ public class Group implements Serializable {
         this.owner = owner;
     }
 
-    public List<Friend> getList() {
+    public List<TFriend> getList() {
         return list;
     }
 
-    public void setList(List<Friend> list) {
+    public void setList(List<TFriend> list) {
         this.list = list;
     }
 }

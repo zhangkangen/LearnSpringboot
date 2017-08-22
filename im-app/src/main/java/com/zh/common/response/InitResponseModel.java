@@ -1,6 +1,7 @@
 package com.zh.common.response;
 
-import com.zh.domain.Staff;
+import com.zh.domain.TGroup;
+import com.zh.domain.TStaff;
 
 import java.security.acl.Group;
 import java.util.List;
@@ -10,31 +11,31 @@ import java.util.List;
  * Created by lenovo on 2017/8/20.
  */
 public class InitResponseModel {
-    private Staff mine;
-    private List<Group> friend;
-    private List<Group> group;
+    private TStaff mine;
+    private List<TGroup> friend;
+    private List<TGroup> group;
 
-    public Staff getMine() {
+    public TStaff getMine() {
         return mine;
     }
 
-    public void setMine(Staff mine) {
+    public void setMine(TStaff mine) {
         this.mine = mine;
     }
 
-    public List<Group> getFriend() {
+    public List<TGroup> getFriend() {
         return friend;
     }
 
-    public void setFriend(List<Group> friend) {
+    public void setFriend(List<TGroup> friend) {
         this.friend = friend;
     }
 
-    public List<Group> getGroup() {
+    public List<TGroup> getGroup() {
         return group;
     }
 
-    public void setGroup(List<Group> group) {
+    public void setGroup(List<TGroup> group) {
         this.group = group;
     }
 }

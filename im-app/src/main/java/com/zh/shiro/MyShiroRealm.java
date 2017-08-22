@@ -39,7 +39,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         if (!StringUtils.hasLength(username)) {
             return null;
         }
-        UserInfo userInfo = userService.getUserInfo(username);
+        UserInfo userInfo = null;
         if (userInfo == null) {
             return null;
         }

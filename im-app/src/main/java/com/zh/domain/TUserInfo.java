@@ -1,5 +1,7 @@
 package com.zh.domain;
 
+import com.sun.xml.internal.rngom.parse.host.Base;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,26 +11,14 @@ import java.io.Serializable;
 /**
  * Created by lenovo on 2017/8/21.
  */
-@Entity
-public class UserInfo implements Serializable {
+public class TUserInfo extends BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private Integer uid;
     @Column(unique = true)
     private String username;
     private String name;
     private String password;
     private String salt;//加密密码的盐
     private byte state;//用户状态
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
 
     public String getUsername() {
         return username;
@@ -72,6 +62,7 @@ public class UserInfo implements Serializable {
 
     /**
      * 密码加盐
+     *
      * @return
      */
     public String getCredentialsSalt() {
