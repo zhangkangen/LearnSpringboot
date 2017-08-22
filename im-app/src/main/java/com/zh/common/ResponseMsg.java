@@ -5,6 +5,7 @@ package com.zh.common;
  * Created by lenovo on 2017/8/20.
  */
 public class ResponseMsg<T> {
+
     private Integer code;
     private String msg;
     private T data;

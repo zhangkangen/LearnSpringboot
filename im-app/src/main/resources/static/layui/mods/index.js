@@ -359,11 +359,10 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'element'], function 
             if (res.status == 0) {
                 button.attr('alert') ? layer.alert(res.msg, {
                     icon: 1,
-                    time: 10 * 1000,
+                    time: 2 * 1000,
                     end: end
                 }) : end();
-            }
-            ;
+            };
         });
         return false;
     });
