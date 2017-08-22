@@ -13,10 +13,6 @@ public class TGroup extends BaseEntity implements Serializable {
 
     private String groupname;
     private String avatar;
-    @ManyToMany
-    @JoinTable(name = "T_FriendGroup",joinColumns = {@JoinColumn(name = "groupId")},inverseJoinColumns = {@JoinColumn(name = "friendId")})
-    private List<TFriend> list;
-
     /**
      * 类型
      * friend 好友分组
@@ -28,6 +24,9 @@ public class TGroup extends BaseEntity implements Serializable {
      * 群主
      */
     private Integer owner;
+
+    @Transient
+    private List<TFriend> list;
 
     public String getGroupname() {
         return groupname;

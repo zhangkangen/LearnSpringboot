@@ -8,6 +8,10 @@ import java.util.List;
  * Created by lenovo on 2017/8/19.
  */
 public class  TStaff extends BaseEntity implements Serializable {
+
+    /**
+     * 用户 id
+     */
     private Integer uid;
     /**
      * 昵称

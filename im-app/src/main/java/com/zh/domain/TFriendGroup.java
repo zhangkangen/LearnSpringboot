@@ -1,10 +1,13 @@
 package com.zh.domain;
 
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 public class TFriendGroup extends BaseEntity implements Serializable {
 
+    @Transient
     private TFriend friend;
+    @Transient
     private TGroup group;
 
     public TFriend getFriend() {
