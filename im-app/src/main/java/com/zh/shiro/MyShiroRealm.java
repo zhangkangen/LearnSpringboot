@@ -1,6 +1,7 @@
 package com.zh.shiro;
 
-import com.zh.domain.UserInfo;
+import com.zh.domain.TUserInfo;
+import com.zh.mapper.UserMapper;
 import com.zh.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -12,11 +13,15 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoRestTemplateCustomizer;
 
 /**
  * Created by lenovo on 2017/8/21.
  */
 public class MyShiroRealm extends AuthorizingRealm {
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private UserService userService;
@@ -39,7 +44,9 @@ public class MyShiroRealm extends AuthorizingRealm {
         if (!StringUtils.hasLength(username)) {
             return null;
         }
-        UserInfo userInfo = null;
+        TUserInfo userInfo = new TUserInfo();
+        userInfo.setUsername(username);
+        userInfo = userMapper.selectOne(userInfo);
         if (userInfo == null) {
             return null;
         }
