@@ -348,6 +348,9 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'element'], function 
     //表单提交
     form.on('submit(*)', function (data) {
         var action = $(data.form).attr('action'), button = $(data.elem);
+        if(action=='/login'){
+            return true;
+        }
         gather.json(action, data.field, function (res) {
             var end = function () {
                 if (res.action) {

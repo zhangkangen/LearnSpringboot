@@ -44,6 +44,7 @@ public class LogonController {
             subject.login(token);
             res.setStatus(0);
             res.setAction("/index");
+            res.setCode(0);
             res.setMsg("登录成功");
         } catch (UnknownAccountException e) {
             error = "用户名/密码错误";
