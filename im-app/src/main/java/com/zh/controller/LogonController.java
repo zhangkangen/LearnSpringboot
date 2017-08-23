@@ -30,7 +30,11 @@ public class LogonController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String doLogin(String username, String password) {
+    @ResponseBody
+    public ResMsg doLogin(String username, String password) {
+
+        ResMsg res = new ResMsg();
+        res.setStatus(1);
 
         String error = null;
         Subject subject = SecurityUtils.getSubject();
@@ -38,7 +42,9 @@ public class LogonController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
-            return "redirect:/index";
+            res.setStatus(0);
+            res.setAction("/index");
+            res.setMsg("登录成功");
         } catch (UnknownAccountException e) {
             error = "用户名/密码错误";
         } catch (IncorrectCredentialsException e) {
@@ -46,7 +52,8 @@ public class LogonController {
         } catch (AuthenticationException e) {
             error = "其他错误" + e.getMessage();
         }
-        return "/login";
+        res.setMsg(error);
+        return res;
     }
 
     @RequestMapping(value = "/reg", method = RequestMethod.GET)

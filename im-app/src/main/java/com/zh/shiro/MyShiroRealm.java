@@ -20,10 +20,10 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoR
  */
 public class MyShiroRealm extends AuthorizingRealm {
 
-    @Autowired
+    @Autowired(required = true)
     private UserMapper userMapper;
 
-    @Autowired
+    @Autowired(required = true)
     private UserService userService;
 
     @Override

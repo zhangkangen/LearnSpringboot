@@ -1,9 +1,11 @@
 package com.zh.shiro.conf;
 
+import com.zh.shiro.CredentialsMatcher;
 import com.zh.shiro.MyShiroRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,11 +17,10 @@ import java.util.Map;
  * Created by lenovo on 2017/8/21.
  */
 @Configuration
-@Order(2)
 public class ShiroConfig {
 
-    @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+    @Bean(name = "shiroFilter")
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") SecurityManager securityManager) {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
@@ -49,16 +50,23 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+    @Bean
     public MyShiroRealm myShiroRealm() {
         MyShiroRealm shiroRealm = new MyShiroRealm();
+        shiroRealm.setCredentialsMatcher(credentialsMatcher());
         return shiroRealm;
     }
 
 
-    @Bean
+    @Bean(name = "securityManager")
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(myShiroRealm());
         return securityManager;
+    }
+
+    @Bean
+    public CredentialsMatcher credentialsMatcher(){
+        return new CredentialsMatcher();
     }
 }
