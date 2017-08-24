@@ -12,4 +12,6 @@ public interface UserService {
     Integer selectCount(TUserInfo userInfo);
 
     Integer save(TUserInfo userInfo);
+
+
 }

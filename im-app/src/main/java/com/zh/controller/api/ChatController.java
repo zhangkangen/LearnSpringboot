@@ -56,4 +56,9 @@ public class ChatController {
     public boolean onlineChange(String online) {
         return true;
     }
+
+    @RequestMapping("/searchFriend")
+    public void searchFriend(String key){
+
+    }
 }
