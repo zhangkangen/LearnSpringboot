@@ -30,6 +30,9 @@ public class  TStaff extends BaseEntity implements Serializable {
      */
     private String avatar;
 
+
+
+
     public Integer getUid() {
         return uid;
     }

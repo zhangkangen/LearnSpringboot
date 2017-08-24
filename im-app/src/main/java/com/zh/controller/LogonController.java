@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by lenovo on 2017/8/21.
@@ -30,11 +31,9 @@ public class LogonController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
-    public ResMsg doLogin(String username, String password) {
+    public ModelAndView doLogin(String username, String password) {
 
-        ResMsg res = new ResMsg();
-        res.setStatus(1);
+        ModelAndView result = new ModelAndView();
 
         String error = null;
         Subject subject = SecurityUtils.getSubject();
@@ -42,10 +41,6 @@ public class LogonController {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
-            res.setStatus(0);
-            res.setAction("/index");
-            res.setCode(0);
-            res.setMsg("登录成功");
         } catch (UnknownAccountException e) {
             error = "用户名/密码错误";
         } catch (IncorrectCredentialsException e) {
@@ -53,8 +48,10 @@ public class LogonController {
         } catch (AuthenticationException e) {
             error = "其他错误" + e.getMessage();
         }
-        res.setMsg(error);
-        return res;
+        if(error!=null){
+            result.addObject("error", error);
+        }
+        return result;
     }
 
     @RequestMapping(value = "/reg", method = RequestMethod.GET)
