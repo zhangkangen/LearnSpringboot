@@ -27,6 +27,12 @@ public class LogonController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
+
+        Subject subject = SecurityUtils.getSubject();
+        TUserInfo userInfo = (TUserInfo) subject.getPrincipal();
+        if (userInfo != null) {
+            return "redirect:/index";
+        }
         return "/login";
     }
 
@@ -48,7 +54,7 @@ public class LogonController {
         } catch (AuthenticationException e) {
             error = "其他错误" + e.getMessage();
         }
-        if(error!=null){
+        if (error != null) {
             result.addObject("error", error);
         }
         return result;
