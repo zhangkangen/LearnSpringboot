@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Created by lenovo on 2017/8/21.
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<TUserInfo> implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -34,16 +34,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer save(TUserInfo userInfo) {
-        Integer count = userMapper.insert(userInfo);
+    public TStaff selectByUId(Integer uid) {
         TStaff staff = new TStaff();
-        staff.setAvatar("");//头像
-        staff.setSign("");//签名
-        staff.setStatus("offline");
-        staff.setUsername(userInfo.getUsername());
-        staff.setUid(userInfo.getId());
-
-        count = staffMapper.insert(staff);
-        return  count;
+        staff.setUid(uid);
+        return staffMapper.selectOne(staff);
     }
+//
+//    @Override
+//    public Integer save(TUserInfo userInfo) {
+//        Integer count = userMapper.insert(userInfo);
+//        TStaff staff = new TStaff();
+//        staff.setAvatar("");//头像
+//        staff.setSign("");//签名
+//        staff.setStatus("offline");
+//        staff.setUsername(userInfo.getUsername());
+//        staff.setUid(userInfo.getId());
+//
+//        count = staffMapper.insert(staff);
+//        return  count;
+//    }
 }

@@ -3,6 +3,7 @@ package com.zh.domain;
 import javax.persistence.*;
 
 public class BaseEntity {
+
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

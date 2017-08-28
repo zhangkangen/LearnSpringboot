@@ -5,10 +5,29 @@ import java.io.Serializable;
 
 public class TFriendGroup extends BaseEntity implements Serializable {
 
+    private Integer groupId;
+    private Integer friendId;
+
     @Transient
     private TFriend friend;
     @Transient
     private TGroup group;
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
+    public Integer getFriendId() {
+        return friendId;
+    }
+
+    public void setFriendId(Integer friendId) {
+        this.friendId = friendId;
+    }
 
     public TFriend getFriend() {
         return friend;
