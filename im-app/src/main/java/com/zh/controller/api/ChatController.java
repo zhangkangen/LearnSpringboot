@@ -36,11 +36,8 @@ public class ChatController extends BaseController{
         InitResponseModel resModel = new InitResponseModel();
 
         TStaff staff = getStaff();
-
         resModel.setMine(staff);
-
         res.setData(resModel);
-
 
         return res;
     }
