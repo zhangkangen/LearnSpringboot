@@ -1,5 +1,8 @@
 package com.zhang.test;
 
+/**
+ * 双重锁检查
+ */
 public class MySingleton {
 
     private volatile static MySingleton instance;

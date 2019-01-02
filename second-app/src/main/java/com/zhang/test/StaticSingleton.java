@@ -1,5 +1,8 @@
 package com.zhang.test;
 
+/**
+ * 静态内部类
+ */
 public class StaticSingleton {
     private StaticSingleton() {
 
