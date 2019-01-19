@@ -30,6 +30,9 @@ public class ThreadLocalDemo {
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
         ArrayList arrayList = new ArrayList();
 
+        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
+
         try {
             if (tl.get() == null) {
                 tl.set(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
